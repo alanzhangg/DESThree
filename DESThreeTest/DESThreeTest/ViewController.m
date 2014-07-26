@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DES3Util.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"%@", [DES3Util encrypt:@"nihao"]);
+    
+    NSString * str = [DES3Util encrypt:@"nihao"];
+    NSString * str_1 = [DES3Util decrypt:str];
+    NSLog(@"%@   %@", str, str_1);
 }
 
 - (void)didReceiveMemoryWarning
