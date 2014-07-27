@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DES3Util.h"
+#import "CommonEncryption.h"
 
 @interface ViewController ()
 
@@ -25,6 +26,11 @@
     NSString * str = [DES3Util encrypt:@"nihao"];
     NSString * str_1 = [DES3Util decrypt:str];
     NSLog(@"%@   %@", str, str_1);
+    
+    NSLog(@"md5_32Bit: %@",[CommonEncryption getMD5_32Bit_srString:@"nihao"]);
+    NSLog(@"md5_16Bit: %@", [CommonEncryption getMD5_16Bit_srString:@"nihao"]);
+    
+    NSLog(@"sha1: %@", [CommonEncryption getSHA1String:@"nihao"]);
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = D690A5FB1984CBAC000C5041 /* CommonEncryption.m */; };
 		D690B7E4198344780080E0B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E3198344780080E0B5 /* Foundation.framework */; };
 		D690B7E6198344780080E0B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E5198344780080E0B5 /* CoreGraphics.framework */; };
 		D690B7E8198344780080E0B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E7198344780080E0B5 /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D690A5FA1984CBAC000C5041 /* CommonEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonEncryption.h; sourceTree = "<group>"; };
+		D690A5FB1984CBAC000C5041 /* CommonEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonEncryption.m; sourceTree = "<group>"; };
 		D690B7E0198344780080E0B5 /* DESThreeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DESThreeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D690B7E3198344780080E0B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D690B7E5198344780080E0B5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -129,6 +132,8 @@
 				D690B7F9198344780080E0B5 /* ViewController.m */,
 				D690B818198346AB0080E0B5 /* DES3Util.h */,
 				D690B819198346AB0080E0B5 /* DES3Util.m */,
+				D690A5FA1984CBAC000C5041 /* CommonEncryption.h */,
+				D690A5FB1984CBAC000C5041 /* CommonEncryption.m */,
 				D690B7FB198344780080E0B5 /* Images.xcassets */,
 				D690B7EA198344780080E0B5 /* Supporting Files */,
 			);
@@ -266,6 +271,7 @@
 				D690B81E19834B7D0080E0B5 /* GTMBase64.m in Sources */,
 				D690B81A198346AB0080E0B5 /* DES3Util.m in Sources */,
 				D690B7F0198344780080E0B5 /* main.m in Sources */,
+				D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
