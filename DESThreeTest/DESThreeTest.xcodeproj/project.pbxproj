@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFD5B524D422EB006660FA /* NSData+AES256.m */; };
 		D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = D690A5FB1984CBAC000C5041 /* CommonEncryption.m */; };
 		D690B7E4198344780080E0B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E3198344780080E0B5 /* Foundation.framework */; };
 		D690B7E6198344780080E0B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E5198344780080E0B5 /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4BCFD5B524D422EB006660FA /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
+		4BCFD5B624D422EB006660FA /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		D690A5FA1984CBAC000C5041 /* CommonEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonEncryption.h; sourceTree = "<group>"; };
 		D690A5FB1984CBAC000C5041 /* CommonEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonEncryption.m; sourceTree = "<group>"; };
 		D690B7E0198344780080E0B5 /* DESThreeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DESThreeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +137,8 @@
 				D690B819198346AB0080E0B5 /* DES3Util.m */,
 				D690A5FA1984CBAC000C5041 /* CommonEncryption.h */,
 				D690A5FB1984CBAC000C5041 /* CommonEncryption.m */,
+				4BCFD5B624D422EB006660FA /* NSData+AES256.h */,
+				4BCFD5B524D422EB006660FA /* NSData+AES256.m */,
 				D690B7FB198344780080E0B5 /* Images.xcassets */,
 				D690B7EA198344780080E0B5 /* Supporting Files */,
 			);
@@ -216,6 +221,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "zhang alan";
 				TargetAttributes = {
+					D690B7DF198344780080E0B5 = {
+						DevelopmentTeam = 63M3QB38XB;
+					};
 					D690B800198344780080E0B5 = {
 						TestTargetID = D690B7DF198344780080E0B5;
 					};
@@ -226,6 +234,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -271,6 +280,7 @@
 				D690B81E19834B7D0080E0B5 /* GTMBase64.m in Sources */,
 				D690B81A198346AB0080E0B5 /* DES3Util.m in Sources */,
 				D690B7F0198344780080E0B5 /* main.m in Sources */,
+				4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */,
 				D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 63M3QB38XB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DESThreeTest/DESThreeTest-Prefix.pch";
 				INFOPLIST_FILE = "DESThreeTest/DESThreeTest-Info.plist";
@@ -409,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 63M3QB38XB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DESThreeTest/DESThreeTest-Prefix.pch";
 				INFOPLIST_FILE = "DESThreeTest/DESThreeTest-Info.plist";

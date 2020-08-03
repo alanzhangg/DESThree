@@ -22,4 +22,8 @@
 
 + (NSString *)sha1_base64:(NSString *)srcString;
 
++ (NSString *)aes128Encrypt:(NSData *)data with:(NSString *)key;
+
++ (NSString *)stringFromHexString:(NSString *)hexString;
+
 @end

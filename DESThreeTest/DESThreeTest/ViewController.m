@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "DES3Util.h"
 #import "CommonEncryption.h"
+#import "NSData+AES256.h"
 
 @interface ViewController ()
 
@@ -31,6 +32,26 @@
     NSLog(@"md5_16Bit: %@", [CommonEncryption getMD5_16Bit_srString:@"nihao"]);
     
     NSLog(@"sha1: %@", [CommonEncryption getSHA1String:@"nihao"]);
+    NSDictionary * dic = @{
+        @"code": @"Bb6GC01Fh0zR9t2t68C5",
+        @"clientid": @"fb38e81626d643829af7e86e26d5500d",
+        @"masterSecret": @"39d542dc79c1fa7cde20337d3ebe8681"
+    };
+    NSLog(@"%@", dic);
+    NSError * error;
+    NSData * data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
+    NSLog(@"%lu", (unsigned long)data.length);
+    if (error) {
+        NSLog(@"%@", error);
+    }
+    NSLog(@"%@", [CommonEncryption aes128Encrypt:data with:@"3c3109ef1afb56cf522501d4ee3c95fa"]);
+    
+    NSString* message = @"神奇的AES";
+    
+    str = [NSData AES256EncryptWithPlainText:message];
+    NSString* res = [NSData AES256DecryptWithCiphertext:str];
+    NSLog(@"%@", str);
+    NSLog(@"%@",res);
 }
 
 - (void)didReceiveMemoryWarning
