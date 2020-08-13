@@ -26,4 +26,5 @@
 
 + (NSString *)stringFromHexString:(NSString *)hexString;
 
+
 @end

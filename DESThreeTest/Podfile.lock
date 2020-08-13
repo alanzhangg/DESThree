@@ -1,0 +1,16 @@
+PODS:
+  - OpenSSL-for-iOS (1.0.2.d.1)
+
+DEPENDENCIES:
+  - OpenSSL-for-iOS (~> 1.0.2.d.1)
+
+SPEC REPOS:
+  trunk:
+    - OpenSSL-for-iOS
+
+SPEC CHECKSUMS:
+  OpenSSL-for-iOS: d7a30add88a1969b052135adbe48452af231ed32
+
+PODFILE CHECKSUM: ff17b20d5fab5d4a5bf119e28db2e66bdb602915
+
+COCOAPODS: 1.9.2

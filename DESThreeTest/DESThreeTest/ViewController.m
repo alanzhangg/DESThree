@@ -10,6 +10,8 @@
 #import "DES3Util.h"
 #import "CommonEncryption.h"
 #import "NSData+AES256.h"
+#import "RSA.h"
+#import "GTMBase64.h"
 
 @interface ViewController ()
 
@@ -52,6 +54,16 @@
     NSString* res = [NSData AES256DecryptWithCiphertext:str];
     NSLog(@"%@", str);
     NSLog(@"%@",res);
+    
+    //rsa
+    NSString * publickey = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCA91ZpU3dzWknAxp6/7c/5THw+Ctk9r8RGAEn8i0X4D2xzeHX0ASg7rPuVGCO95dpzX05Vgkp4NW22K4ClJ4q+bIPuhA1k9iaPBOqFAmhCtMURO1QuivXNo+iQpMMCK63WttvEY51uMMKtnPJ+q5PORt4fF9mhzMspL3LD6LAj0QIDAQAB";
+    NSString * privateKey = @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAID3VmlTd3NaScDGnr/tz/lMfD4K2T2vxEYASfyLRfgPbHN4dfQBKDus+5UYI73l2nNfTlWCSng1bbYrgKUnir5sg+6EDWT2Jo8E6oUCaEK0xRE7VC6K9c2j6JCkwwIrrda228RjnW4wwq2c8n6rk85G3h8X2aHMyykvcsPosCPRAgMBAAECgYBdE6Vu4MmOHDSsh+zc8kKuVzA4CtZc+fT63IyJUu8Np/wKnn7quscRwrfUFBb/n9t4dulvN1iNx2nGF0GCcLZlw7GJV2uTMAwDV6Ivn/fwR6sLg1SmOH3z60NXGAWQzUGR4GTgaxUlSETUDiGUgDGPqAGmSKoi23gGFDzYEI+17QJBAPen+qK9O6BRWmZ4GDL/dcDyvIzUP/l970waH6wMZcFJJfWMKCUNq+6MjjCHk9dIflPKKARTgQGD8HoZ1P9A4L8CQQCFT6nmCeDjI1jqjvEDFtAEmSSDzlfrXIinMDbFMdtwMuP01pBEWuvVktcll9/e1O2eq5ok4RBkKuwylxe+/I9vAkA7vnhGPiRePoHyalJcKyh7DZPS3Xk5dNn/n+W4GZ2KjVzs6Yzds3igqaO7rVlK/CANkp0ovgRHG08uBYFOupX9AkBYrJHdo0qEq7l0ZFpqbJ03wcopJnMS6n03gHmeF7jYW/GHpcVWwofGi6MyrWBLb6UTex/QUii+CFMOn7Q65PJfAkBmITmSE8EiQebWfbR7ouZkZZDs8axLsblaTG7OchrV/TVbw2Gd/VwJFLrahOOILiLfAiQrWCrj6XJXn4eLNE4+";
+    
+    message = @"7856412346543216";
+    NSString * enMessage = [RSA encryptString:message publicKey:publickey];
+    NSLog(@"===>%@", enMessage);
+    NSLog(@"====>%@", [RSA decryptString:enMessage privateKey:privateKey]);
+    
 }
 
 - (void)didReceiveMemoryWarning

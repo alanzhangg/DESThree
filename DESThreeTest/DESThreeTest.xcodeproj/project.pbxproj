@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CFE78C22A2BFE3D233BD8DE /* Pods_DESThreeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C810CF9914D3E9517B71E480 /* Pods_DESThreeTestTests.framework */; };
+		4BCDA4B924E3C8F80059217E /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDA4B724E3C8F80059217E /* RSA.m */; };
 		4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFD5B524D422EB006660FA /* NSData+AES256.m */; };
+		6EFBF1952C024B0E030F62B5 /* Pods_DESThreeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */; };
 		D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = D690A5FB1984CBAC000C5041 /* CommonEncryption.m */; };
 		D690B7E4198344780080E0B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E3198344780080E0B5 /* Foundation.framework */; };
 		D690B7E6198344780080E0B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E5198344780080E0B5 /* CoreGraphics.framework */; };
@@ -38,8 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTestTests.release.xcconfig"; path = "Target Support Files/Pods-DESThreeTestTests/Pods-DESThreeTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DESThreeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BCDA4B724E3C8F80059217E /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		4BCDA4B824E3C8F80059217E /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		4BCFD5B524D422EB006660FA /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		4BCFD5B624D422EB006660FA /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		53F139553CE242C34A1B6521 /* Pods-DESThreeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTest.debug.xcconfig"; path = "Target Support Files/Pods-DESThreeTest/Pods-DESThreeTest.debug.xcconfig"; sourceTree = "<group>"; };
+		96542D0C14407F45F792312C /* Pods-DESThreeTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DESThreeTestTests/Pods-DESThreeTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AB4FE4321F17FFA634078C14 /* Pods-DESThreeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTest.release.xcconfig"; path = "Target Support Files/Pods-DESThreeTest/Pods-DESThreeTest.release.xcconfig"; sourceTree = "<group>"; };
+		C810CF9914D3E9517B71E480 /* Pods_DESThreeTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DESThreeTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D690A5FA1984CBAC000C5041 /* CommonEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonEncryption.h; sourceTree = "<group>"; };
 		D690A5FB1984CBAC000C5041 /* CommonEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonEncryption.m; sourceTree = "<group>"; };
 		D690B7E0198344780080E0B5 /* DESThreeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DESThreeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +87,7 @@
 				D690B7E6198344780080E0B5 /* CoreGraphics.framework in Frameworks */,
 				D690B7E8198344780080E0B5 /* UIKit.framework in Frameworks */,
 				D690B7E4198344780080E0B5 /* Foundation.framework in Frameworks */,
+				6EFBF1952C024B0E030F62B5 /* Pods_DESThreeTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,12 +98,25 @@
 				D690B803198344780080E0B5 /* XCTest.framework in Frameworks */,
 				D690B805198344780080E0B5 /* UIKit.framework in Frameworks */,
 				D690B804198344780080E0B5 /* Foundation.framework in Frameworks */,
+				1CFE78C22A2BFE3D233BD8DE /* Pods_DESThreeTestTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C79BDB45F2CB339F62D42680 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				53F139553CE242C34A1B6521 /* Pods-DESThreeTest.debug.xcconfig */,
+				AB4FE4321F17FFA634078C14 /* Pods-DESThreeTest.release.xcconfig */,
+				96542D0C14407F45F792312C /* Pods-DESThreeTestTests.debug.xcconfig */,
+				2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D690B7D7198344780080E0B5 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +124,7 @@
 				D690B808198344780080E0B5 /* DESThreeTestTests */,
 				D690B7E2198344780080E0B5 /* Frameworks */,
 				D690B7E1198344780080E0B5 /* Products */,
+				C79BDB45F2CB339F62D42680 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +144,8 @@
 				D690B7E5198344780080E0B5 /* CoreGraphics.framework */,
 				D690B7E7198344780080E0B5 /* UIKit.framework */,
 				D690B802198344780080E0B5 /* XCTest.framework */,
+				40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */,
+				C810CF9914D3E9517B71E480 /* Pods_DESThreeTestTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +167,8 @@
 				D690A5FB1984CBAC000C5041 /* CommonEncryption.m */,
 				4BCFD5B624D422EB006660FA /* NSData+AES256.h */,
 				4BCFD5B524D422EB006660FA /* NSData+AES256.m */,
+				4BCDA4B824E3C8F80059217E /* RSA.h */,
+				4BCDA4B724E3C8F80059217E /* RSA.m */,
 				D690B7FB198344780080E0B5 /* Images.xcassets */,
 				D690B7EA198344780080E0B5 /* Supporting Files */,
 			);
@@ -181,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D690B812198344780080E0B5 /* Build configuration list for PBXNativeTarget "DESThreeTest" */;
 			buildPhases = (
+				79C0E4E4887402862D69203B /* [CP] Check Pods Manifest.lock */,
 				D690B7DC198344780080E0B5 /* Sources */,
 				D690B7DD198344780080E0B5 /* Frameworks */,
 				D690B7DE198344780080E0B5 /* Resources */,
@@ -198,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D690B815198344780080E0B5 /* Build configuration list for PBXNativeTarget "DESThreeTestTests" */;
 			buildPhases = (
+				8C7F790C80B08A19D5BF8DAF /* [CP] Check Pods Manifest.lock */,
 				D690B7FD198344780080E0B5 /* Sources */,
 				D690B7FE198344780080E0B5 /* Frameworks */,
 				D690B7FF198344780080E0B5 /* Resources */,
@@ -270,6 +302,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		79C0E4E4887402862D69203B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DESThreeTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C7F790C80B08A19D5BF8DAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DESThreeTestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D690B7DC198344780080E0B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -281,6 +360,7 @@
 				D690B81A198346AB0080E0B5 /* DES3Util.m in Sources */,
 				D690B7F0198344780080E0B5 /* main.m in Sources */,
 				4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */,
+				4BCDA4B924E3C8F80059217E /* RSA.m in Sources */,
 				D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +483,7 @@
 		};
 		D690B813198344780080E0B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53F139553CE242C34A1B6521 /* Pods-DESThreeTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -417,6 +498,7 @@
 		};
 		D690B814198344780080E0B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB4FE4321F17FFA634078C14 /* Pods-DESThreeTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -431,6 +513,7 @@
 		};
 		D690B816198344780080E0B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96542D0C14407F45F792312C /* Pods-DESThreeTestTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DESThreeTest.app/DESThreeTest";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -453,6 +536,7 @@
 		};
 		D690B817198344780080E0B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DESThreeTest.app/DESThreeTest";
 				FRAMEWORK_SEARCH_PATHS = (
