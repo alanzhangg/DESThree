@@ -1,16 +1,16 @@
 PODS:
-  - OpenSSL-for-iOS (1.0.2.d.1)
+  - openssl-ios-bitcode (1.0.216)
 
 DEPENDENCIES:
-  - OpenSSL-for-iOS (~> 1.0.2.d.1)
+  - openssl-ios-bitcode
 
 SPEC REPOS:
   trunk:
-    - OpenSSL-for-iOS
+    - openssl-ios-bitcode
 
 SPEC CHECKSUMS:
-  OpenSSL-for-iOS: d7a30add88a1969b052135adbe48452af231ed32
+  openssl-ios-bitcode: b46298bcbc3e218fe13e376142af616850a36f7d
 
-PODFILE CHECKSUM: ff17b20d5fab5d4a5bf119e28db2e66bdb602915
+PODFILE CHECKSUM: 652a8d429efb8e3f000d22def01d729e8c01ed2b
 
 COCOAPODS: 1.9.2

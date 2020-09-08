@@ -48,10 +48,10 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 }
 
 /*加密方法*/
-+ (NSString *)AES256EncryptWithPlainText:(NSString *)plain {
++ (NSString *)AES256EncryptWithPlainText:(NSString *)plain withKey:(NSString *)key{
     NSData *plainText = [plain dataUsingEncoding:NSUTF8StringEncoding];
 	// 'key' should be 32 bytes for AES256, will be null-padded otherwise
-    NSString * key = @"7856412346543216";
+//    NSString * key = @"7856412346543216";
 	char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
 	bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -61,7 +61,7 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
     bzero(buffer, sizeof(buffer));
 	
 	size_t numBytesEncrypted = 0;
-    const void * vinitVec = (const void *)[@"0392039203920300" UTF8String];
+    const void * vinitVec = (const void *)[@"gfdertfghjkuyrtg" UTF8String];
 	CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES128,kCCOptionPKCS7Padding,
                                           keyPtr, kCCKeySizeAES128,
 										  vinitVec /* initialization vector (optional) */,
@@ -78,11 +78,11 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 }
 
 /*解密方法*/
-+ (NSString *)AES256DecryptWithCiphertext:(NSString *)ciphertexts{
++ (NSString *)AES256DecryptWithCiphertext:(NSString *)ciphertexts withkey:(NSString *)key{
     
     NSData *cipherData = [NSData dataWithBase64EncodedString:ciphertexts];
 	// 'key' should be 32 bytes for AES256, will be null-padded otherwise
-    NSString * key = @"7856412346543216";
+//    NSString * key = @"7856412346543216";
 	char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
 	bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -91,7 +91,7 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 	
 	size_t bufferSize = dataLength + kCCBlockSizeAES128;
 	void *buffer = malloc(bufferSize);
-    const void * vinitVec = (const void *)[@"0392039203920300" UTF8String];
+    const void * vinitVec = (const void *)[@"gfdertfghjkuyrtg" UTF8String];
 	size_t numBytesDecrypted = 0;
 	CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128, kCCOptionPKCS7Padding,
 										  keyPtr, kCCKeySizeAES128,

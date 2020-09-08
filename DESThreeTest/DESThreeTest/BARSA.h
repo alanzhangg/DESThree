@@ -4,8 +4,15 @@
 */
 
 #import <Foundation/Foundation.h>
+#import <Security/Security.h>
+#import <CommonCrypto/CommonCryptor.h>
 
-@interface RSA : NSObject
+typedef void (^keyPair)(SecKeyRef publicKey ,SecKeyRef privateKey);
+
+@interface BARSA : NSObject
+
++ (NSData *)encryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef isSign:(BOOL)isSign;
++ (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef;
 
 // return base64 encoded string
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey;
@@ -21,5 +28,9 @@
 + (NSData *)decryptData:(NSData *)data publicKey:(NSString *)pubKey;
 + (NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey;
 + (NSData *)decryptData:(NSData *)data privateKey:(NSString *)privKey;
++ (void)getRSAKeyPairWithKeySize:(int)keySize keyPair:(keyPair)pair; //生成秘钥对
++ (NSData *)getPrivateKeyBitsFromKey:(SecKeyRef)givenKey;
++ (NSData *)getPublicKeyBitsFromKey:(SecKeyRef)givenKey;
++ (NSData *)KeyBitsFromSecKey:(SecKeyRef)givenKey;
 
 @end

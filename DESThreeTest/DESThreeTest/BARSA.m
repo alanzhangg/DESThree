@@ -3,10 +3,13 @@
  @link: https://github.com/ideawu/Objective-C-RSA
 */
 
-#import "RSA.h"
-#import <Security/Security.h>
+#import "BARSA.h"
 
-@implementation RSA
+
+static const UInt8 publicKeyIdentifier[] = "com.apple.sample.publickey/0";
+static const UInt8 privateKeyIdentifier[] = "com.apple.sample.privatekey/0";
+
+@implementation BARSA
 
 /*
 static NSString *base64_encode(NSString *str){
@@ -46,7 +49,7 @@ static NSData *base64_decode(NSString *str){
 	
 	// PKCS #1 rsaEncryption szOID_RSA_RSA
 	static unsigned char seqiod[] =
-	{ 0x30,   0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
+	{ 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
 		0x01, 0x05, 0x00 };
 	if (memcmp(&c_key[idx], seqiod, 15)) return(nil);
 	
@@ -118,14 +121,14 @@ static NSData *base64_decode(NSString *str){
 	
 	// This will be base64 encoded, decode it.
 	NSData *data = base64_decode(key);
-	data = [RSA stripPublicKeyHeader:data];
+	data = [BARSA stripPublicKeyHeader:data];
 	if(!data){
 		return nil;
 	}
 
 	//a tag to read/write keychain storage
-	NSString *tag = @"RSAUtil_PubKey";
-	NSData *d_tag = [NSData dataWithBytes:[tag UTF8String] length:[tag length]];
+//	NSString *tag = @"RSAUtil_PubKey";
+	NSData *d_tag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
 	
 	// Delete any old lingering key with the same tag
 	NSMutableDictionary *publicKey = [[NSMutableDictionary alloc] init];
@@ -187,14 +190,14 @@ static NSData *base64_decode(NSString *str){
 
 	// This will be base64 encoded, decode it.
 	NSData *data = base64_decode(key);
-	data = [RSA stripPrivateKeyHeader:data];
+	data = [BARSA stripPrivateKeyHeader:data];
 	if(!data){
 		return nil;
 	}
 
 	//a tag to read/write keychain storage
-	NSString *tag = @"RSAUtil_PrivKey";
-	NSData *d_tag = [NSData dataWithBytes:[tag UTF8String] length:[tag length]];
+//	NSString *tag = @"RSAUtil_PrivKey";
+	NSData *d_tag = [[NSData alloc] initWithBytes:privateKeyIdentifier length:sizeof(privateKeyIdentifier)];
 
 	// Delete any old lingering key with the same tag
 	NSMutableDictionary *privateKey = [[NSMutableDictionary alloc] init];
@@ -286,7 +289,7 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSString *)encryptString:(NSString *)str privateKey:(NSString *)privKey{
-	NSData *data = [RSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] privateKey:privKey];
+	NSData *data = [BARSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] privateKey:privKey];
 	NSString *ret = base64_encode_data(data);
 	return ret;
 }
@@ -295,11 +298,11 @@ static NSData *base64_decode(NSString *str){
 	if(!data || !privKey){
 		return nil;
 	}
-	SecKeyRef keyRef = [RSA addPrivateKey:privKey];
+	SecKeyRef keyRef = [BARSA addPrivateKey:privKey];
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA encryptData:data withKeyRef:keyRef isSign:YES];
+	return [BARSA encryptData:data withKeyRef:keyRef isSign:YES];
 }
 
 + (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
@@ -358,7 +361,7 @@ static NSData *base64_decode(NSString *str){
 
 + (NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey{
 	NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
-	data = [RSA decryptData:data privateKey:privKey];
+	data = [BARSA decryptData:data privateKey:privKey];
 	NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return ret;
 }
@@ -367,11 +370,11 @@ static NSData *base64_decode(NSString *str){
 	if(!data || !privKey){
 		return nil;
 	}
-	SecKeyRef keyRef = [RSA addPrivateKey:privKey];
+	SecKeyRef keyRef = [BARSA addPrivateKey:privKey];
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA decryptData:data withKeyRef:keyRef];
+	return [BARSA decryptData:data withKeyRef:keyRef];
 }
 
 /* END: Encryption & Decryption with RSA private key */
@@ -379,7 +382,7 @@ static NSData *base64_decode(NSString *str){
 /* START: Encryption & Decryption with RSA public key */
 
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
-	NSData *data = [RSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
+	NSData *data = [BARSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
 	NSString *ret = base64_encode_data(data);
 	return ret;
 }
@@ -388,16 +391,16 @@ static NSData *base64_decode(NSString *str){
 	if(!data || !pubKey){
 		return nil;
 	}
-	SecKeyRef keyRef = [RSA addPublicKey:pubKey];
+	SecKeyRef keyRef = [BARSA addPublicKey:pubKey];
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA encryptData:data withKeyRef:keyRef isSign:NO];
+	return [BARSA encryptData:data withKeyRef:keyRef isSign:NO];
 }
 
 + (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
 	NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
-	data = [RSA decryptData:data publicKey:pubKey];
+	data = [BARSA decryptData:data publicKey:pubKey];
 	NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return ret;
 }
@@ -406,13 +409,122 @@ static NSData *base64_decode(NSString *str){
 	if(!data || !pubKey){
 		return nil;
 	}
-	SecKeyRef keyRef = [RSA addPublicKey:pubKey];
+	SecKeyRef keyRef = [BARSA addPublicKey:pubKey];
 	if(!keyRef){
 		return nil;
 	}
-	return [RSA decryptData:data withKeyRef:keyRef];
+	return [BARSA decryptData:data withKeyRef:keyRef];
 }
 
 /* END: Encryption & Decryption with RSA public key */
+
++ (void)getRSAKeyPairWithKeySize:(int)keySize keyPair:(keyPair)pair{
+
+    OSStatus status = noErr;
+    if (keySize == 512 || keySize == 1024 || keySize == 2048) {
+
+        //定义dictionary，用于传递SecKeyGeneratePair函数中的第1个参数。
+        NSMutableDictionary *privateKeyAttr = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *publicKeyAttr = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *keyPairAttr = [[NSMutableDictionary alloc] init];
+
+        //把第1步中定义的字符串转换为NSData对象。
+        NSData * publicTag = [NSData dataWithBytes:publicKeyIdentifier
+                                            length:strlen((const char *)publicKeyIdentifier)];
+        NSData * privateTag = [NSData dataWithBytes:privateKeyIdentifier
+                                             length:strlen((const char *)privateKeyIdentifier)];
+        //为公／私钥对准备SecKeyRef对象。
+        SecKeyRef publicKey = NULL;
+        SecKeyRef privateKey = NULL;
+        //
+        //设置密钥对的密钥类型为RSA。
+        [keyPairAttr setObject:(id)kSecAttrKeyTypeRSA forKey:(id)kSecAttrKeyType];
+        //设置密钥对的密钥长度为1024。
+        [keyPairAttr setObject:[NSNumber numberWithInt:keySize] forKey:(id)kSecAttrKeySizeInBits];
+
+        //设置私钥的持久化属性（即是否存入钥匙串）为YES。
+        [privateKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(id)kSecAttrIsPermanent];
+        [privateKeyAttr setObject:privateTag forKey:(id)kSecAttrApplicationTag];
+
+        //设置公钥的持久化属性（即是否存入钥匙串）为YES。
+        [publicKeyAttr setObject:[NSNumber numberWithBool:YES] forKey:(id)kSecAttrIsPermanent];
+        [publicKeyAttr setObject:publicTag forKey:(id)kSecAttrApplicationTag];
+
+        // 把私钥的属性集（dictionary）加到密钥对的属性集（dictionary）中。
+        [keyPairAttr setObject:privateKeyAttr forKey:(id)kSecPrivateKeyAttrs];
+        [keyPairAttr setObject:publicKeyAttr forKey:(id)kSecPublicKeyAttrs];
+
+        //生成密钥对
+        status = SecKeyGeneratePair((CFDictionaryRef)keyPairAttr,&publicKey, &privateKey); // 13
+        if (status == noErr && publicKey != NULL && privateKey != NULL) {
+            pair(publicKey,privateKey);
+        }
+        else
+            pair(publicKey,privateKey);
+    }
+    
+}
+
++ (NSData *)KeyBitsFromSecKey:(SecKeyRef)givenKey {
+
+    return (NSData*)CFBridgingRelease(SecKeyCopyExternalRepresentation(givenKey, NULL));
+}
+
++ (NSData *)getPublicKeyBitsFromKey:(SecKeyRef)givenKey {
+    
+    NSData *publicTag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
+
+    OSStatus sanityCheck = noErr;
+    NSData * publicKeyBits = nil;
+
+    NSMutableDictionary * queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+
+    // Temporarily add key to the Keychain, return as data:
+    NSMutableDictionary * attributes = [queryPublicKey mutableCopy];
+    [attributes setObject:(__bridge id)givenKey forKey:(__bridge id)kSecValueRef];
+    [attributes setObject:@YES forKey:(__bridge id)kSecReturnData];
+    CFTypeRef result;
+    sanityCheck = SecItemAdd((__bridge CFDictionaryRef) attributes, &result);
+    if (sanityCheck == errSecSuccess) {
+        publicKeyBits = CFBridgingRelease(result);
+
+        // Remove from Keychain again:
+        (void)SecItemDelete((__bridge CFDictionaryRef) queryPublicKey);
+    }
+
+    return publicKeyBits;
+}
+
++ (NSData *)getPrivateKeyBitsFromKey:(SecKeyRef)givenKey {
+    
+    NSData *publicTag = [[NSData alloc] initWithBytes:privateKeyIdentifier length:sizeof(privateKeyIdentifier)];
+
+    OSStatus sanityCheck = noErr;
+    NSData * publicKeyBits = nil;
+
+    NSMutableDictionary * queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+
+    // Temporarily add key to the Keychain, return as data:
+    NSMutableDictionary * attributes = [queryPublicKey mutableCopy];
+    [attributes setObject:(__bridge id)givenKey forKey:(__bridge id)kSecValueRef];
+    [attributes setObject:@YES forKey:(__bridge id)kSecReturnData];
+    CFTypeRef result;
+    sanityCheck = SecItemAdd((__bridge CFDictionaryRef) attributes, &result);
+    if (sanityCheck == errSecSuccess) {
+        publicKeyBits = CFBridgingRelease(result);
+
+        // Remove from Keychain again:
+        (void)SecItemDelete((__bridge CFDictionaryRef) queryPublicKey);
+    }
+
+    return publicKeyBits;
+}
+
 
 @end

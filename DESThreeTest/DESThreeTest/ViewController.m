@@ -10,14 +10,22 @@
 #import "DES3Util.h"
 #import "CommonEncryption.h"
 #import "NSData+AES256.h"
-#import "RSA.h"
+#import "BARSA.h"
 #import "GTMBase64.h"
+#import "RSAOpenSSL.h"
 
 @interface ViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ViewController{
+    SecKeyRef _publicKey;
+    SecKeyRef _privateKey;
+    
+    
+    NSString *_publicKeyBase64;
+    NSString *_privateKeyBase64;
+}
 
 - (void)viewDidLoad
 {
@@ -48,22 +56,58 @@
     }
     NSLog(@"%@", [CommonEncryption aes128Encrypt:data with:@"3c3109ef1afb56cf522501d4ee3c95fa"]);
     
-    NSString* message = @"神奇的AES";
+    NSString* message = @"qwertyuisfdlsajdxcvnkhsakfh1332487";
     
-    str = [NSData AES256EncryptWithPlainText:message];
-    NSString* res = [NSData AES256DecryptWithCiphertext:str];
+    str = [NSData AES256EncryptWithPlainText:message withKey:@"asdfwetyhjuytrfd"];
+    NSString* res = [NSData AES256DecryptWithCiphertext:str withkey:@"asdfwetyhjuytrfd"];
     NSLog(@"%@", str);
     NSLog(@"%@",res);
     
     //rsa
-    NSString * publickey = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCA91ZpU3dzWknAxp6/7c/5THw+Ctk9r8RGAEn8i0X4D2xzeHX0ASg7rPuVGCO95dpzX05Vgkp4NW22K4ClJ4q+bIPuhA1k9iaPBOqFAmhCtMURO1QuivXNo+iQpMMCK63WttvEY51uMMKtnPJ+q5PORt4fF9mhzMspL3LD6LAj0QIDAQAB";
-    NSString * privateKey = @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAID3VmlTd3NaScDGnr/tz/lMfD4K2T2vxEYASfyLRfgPbHN4dfQBKDus+5UYI73l2nNfTlWCSng1bbYrgKUnir5sg+6EDWT2Jo8E6oUCaEK0xRE7VC6K9c2j6JCkwwIrrda228RjnW4wwq2c8n6rk85G3h8X2aHMyykvcsPosCPRAgMBAAECgYBdE6Vu4MmOHDSsh+zc8kKuVzA4CtZc+fT63IyJUu8Np/wKnn7quscRwrfUFBb/n9t4dulvN1iNx2nGF0GCcLZlw7GJV2uTMAwDV6Ivn/fwR6sLg1SmOH3z60NXGAWQzUGR4GTgaxUlSETUDiGUgDGPqAGmSKoi23gGFDzYEI+17QJBAPen+qK9O6BRWmZ4GDL/dcDyvIzUP/l970waH6wMZcFJJfWMKCUNq+6MjjCHk9dIflPKKARTgQGD8HoZ1P9A4L8CQQCFT6nmCeDjI1jqjvEDFtAEmSSDzlfrXIinMDbFMdtwMuP01pBEWuvVktcll9/e1O2eq5ok4RBkKuwylxe+/I9vAkA7vnhGPiRePoHyalJcKyh7DZPS3Xk5dNn/n+W4GZ2KjVzs6Yzds3igqaO7rVlK/CANkp0ovgRHG08uBYFOupX9AkBYrJHdo0qEq7l0ZFpqbJ03wcopJnMS6n03gHmeF7jYW/GHpcVWwofGi6MyrWBLb6UTex/QUii+CFMOn7Q65PJfAkBmITmSE8EiQebWfbR7ouZkZZDs8axLsblaTG7OchrV/TVbw2Gd/VwJFLrahOOILiLfAiQrWCrj6XJXn4eLNE4+";
+    __block NSString * publickey = @"";
+    __block NSString * privatekey = @"";
     
-    message = @"7856412346543216";
-    NSString * enMessage = [RSA encryptString:message publicKey:publickey];
-    NSLog(@"===>%@", enMessage);
-    NSLog(@"====>%@", [RSA decryptString:enMessage privateKey:privateKey]);
+    message = @"1234567890";
+    NSString * enStr = [BARSA encryptString:message publicKey:@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDC+XMCciMdcEcKhVkTb4MhajiBZeLFtbRoezY1EYVyzeNRaf+31r0w850uM8LcyG08hj+kTm/KBofDSfIlWudQOnKuST5qFuH7wiSvJlS5fZ6tdbuAvmY2OOPln099/azE8Cm5hoHs1oocJtVqDCwuA0ZJ6VrefZ/bIEhKjxrlZQIDAQAB"];
+    NSLog(@"%@", enStr);
+    NSLog(@"%@", [BARSA decryptString:enStr privateKey:@"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAML5cwJyIx1wRwqFWRNvgyFqOIFl4sW1tGh7NjURhXLN41Fp/7fWvTDznS4zwtzIbTyGP6ROb8oGh8NJ8iVa51A6cq5JPmoW4fvCJK8mVLl9nq11u4C+ZjY44+WfT339rMTwKbmGgezWihwm1WoMLC4DRknpWt59n9sgSEqPGuVlAgMBAAECgYBTFKRTSHt6EdvTudqpE31XAcIuMVIeWT0UwFvq5RpuPxk8GeTjW1emwkgZ5eiE18rkXXhE9T9hYML9Dkdmb4PcxsGvzQsSUWpwII0wPQzzebAEkNGjbanQYt8sCpotIPVpLTS5QvusLEIPX9KGbM+HnSvZ3iOAT8D3TxPRjtE8yQJBAPROdZZgQynYdDZiRORvckB0xu/nOG7nUd/Svw7KsSa1+y5j165W2falEgjaL/hgBNbpHeBZQtI9sMnnuLHVqZMCQQDMToNnXBO1DlsFgSzDLWG51zYHx6qR2p4MZcXV5KwHi2wG6XudoxQfOAFH96+kYZSWNkaVSWs8x7C1SGr4w7AnAkAB1JCm9sOqDZgZTDUt7PPTLczLwVS35/3CCocp6jTXkGd4WoEkKjxpz6TJ8jCH0NhYb9isdJ6+in3HlXfZxTsHAkATy6+zvhoyutda6y85IhaL+SxFCLWgODyEGwBWPzfj60BmUw0lMv3qIHUPUhJ0rPfGri+cm2aGlxqqFgA3Zk6VAkBHwCAaYoD6hS5rM1TUmuj7kmxs4idw4vPk89/V41NEq9I/vIF+evkLzYfFWWhbkmL2UP/fLipu5ilDFj1Rh/6l"]);
     
+    NSLog(@"============秘钥对=============\n");
+    
+//    RSA * openSSLPublicKey;
+//    RSA * openSSLPrivateKey;
+//
+//    BOOL yes = [RSAOpenSSL generateRSAKeyPairWithKeySize:1024 publicKey:&openSSLPublicKey privateKey:&openSSLPrivateKey];
+//    if (yes) {
+//
+//        NSString *pemPublickey =[RSAOpenSSL PEMFormatRSAKey:openSSLPublicKey isPublic:YES];
+//        NSString *pemPrivatekey = [RSAOpenSSL PEMFormatRSAKey:openSSLPrivateKey isPublic:NO];
+//
+//        //除去-----PUBLICKEY-----获取的纯key 字符串
+//        _publicKeyBase64 = [RSAOpenSSL base64EncodedFromPEMFormat:pemPublickey];
+//        _privateKeyBase64 = [RSAOpenSSL base64EncodedFromPEMFormat:pemPrivatekey];
+//
+//        NSLog(@"%@", _publicKeyBase64);
+//        NSLog(@"%@", _privateKeyBase64);
+//    }
+    
+    
+//    [RSA getRSAKeyPairWithKeySize:1024 keyPair:^(SecKeyRef publicKey, SecKeyRef privateKey) {
+//        _publicKey = publicKey;
+//        _privateKey = privateKey;
+//        NSData * pubData = [RSA KeyBitsFromSecKey:publicKey];
+//        NSData * privateData = [RSA KeyBitsFromSecKey:privateKey];
+//        publickey = [pubData base64EncodedStringWithOptions:0];
+//        privatekey = [privateData base64EncodedStringWithOptions:0];
+//        NSLog(@"%@", publickey);
+//        NSLog(@"%@", privatekey);
+//    }];
+//    publickey = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDC1qFlx38qkWxMq3kDKjVRCxfWq/I8SzMetIKeM1zS5+ECqNeUlzznXM3Qfabqat3bU2brRWBytfGTMUigTTWnXplQzy3Vnl+Dgc3jAfNnGRiTcyoNDxtlmiHZsLwAW7R4po0Ulda0jp0feKJz47/MTcUB9GKujUnGb8PNQgce2wIDAQAB";
+//    @"MIGJAoGBAMHFBHaGsrUaOw+G9+ZhjBlZNUOnKlJHVNJdryi+pHbCkk9plZsYvC4YZg9zMIJflf3tSTs213jAafmUaiHBdhGb8XS+SqxEeSH251M3GLPxZ4LvEpGR/hjGp4xQPX3wiMrEWH2zlp3Xwmhou/bWafouWJ/ytWzn4UDe7HQ2fTkdAgMBAAE="
+    
+//    NSData * enMessage = [RSA encryptData:[message dataUsingEncoding:NSUTF8StringEncoding] withKeyRef:_publicKey isSign:NO];
+//    NSLog(@"公钥===>%@", [enMessage base64EncodedStringWithOptions:0]);
+//    NSLog(@"====>%@", [RSA decryptData:enMessage privateKey:privatekey]);
 }
 
 - (void)didReceiveMemoryWarning

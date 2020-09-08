@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1CFE78C22A2BFE3D233BD8DE /* Pods_DESThreeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C810CF9914D3E9517B71E480 /* Pods_DESThreeTestTests.framework */; };
-		4BCDA4B924E3C8F80059217E /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDA4B724E3C8F80059217E /* RSA.m */; };
+		4BCDA4B924E3C8F80059217E /* BARSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDA4B724E3C8F80059217E /* BARSA.m */; };
 		4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFD5B524D422EB006660FA /* NSData+AES256.m */; };
+		4BF09C6D25063B6100BA6B18 /* RSAOpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF09C6C25063B6100BA6B18 /* RSAOpenSSL.m */; };
 		6EFBF1952C024B0E030F62B5 /* Pods_DESThreeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */; };
 		D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = D690A5FB1984CBAC000C5041 /* CommonEncryption.m */; };
 		D690B7E4198344780080E0B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D690B7E3198344780080E0B5 /* Foundation.framework */; };
@@ -43,10 +44,13 @@
 /* Begin PBXFileReference section */
 		2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTestTests.release.xcconfig"; path = "Target Support Files/Pods-DESThreeTestTests/Pods-DESThreeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DESThreeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BCDA4B724E3C8F80059217E /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
-		4BCDA4B824E3C8F80059217E /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
+		4BCDA4B724E3C8F80059217E /* BARSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARSA.m; sourceTree = "<group>"; };
+		4BCDA4B824E3C8F80059217E /* BARSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARSA.h; sourceTree = "<group>"; };
 		4BCFD5B524D422EB006660FA /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		4BCFD5B624D422EB006660FA /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		4BF09C6A2506339C00BA6B18 /* DESThreeTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DESThreeTest.entitlements; sourceTree = "<group>"; };
+		4BF09C6B25063B6100BA6B18 /* RSAOpenSSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAOpenSSL.h; sourceTree = "<group>"; };
+		4BF09C6C25063B6100BA6B18 /* RSAOpenSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAOpenSSL.m; sourceTree = "<group>"; };
 		53F139553CE242C34A1B6521 /* Pods-DESThreeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTest.debug.xcconfig"; path = "Target Support Files/Pods-DESThreeTest/Pods-DESThreeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		96542D0C14407F45F792312C /* Pods-DESThreeTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DESThreeTestTests/Pods-DESThreeTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB4FE4321F17FFA634078C14 /* Pods-DESThreeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTest.release.xcconfig"; path = "Target Support Files/Pods-DESThreeTest/Pods-DESThreeTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +117,6 @@
 				96542D0C14407F45F792312C /* Pods-DESThreeTestTests.debug.xcconfig */,
 				2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -153,6 +156,7 @@
 		D690B7E9198344780080E0B5 /* DESThreeTest */ = {
 			isa = PBXGroup;
 			children = (
+				4BF09C6A2506339C00BA6B18 /* DESThreeTest.entitlements */,
 				D690B81B19834B7D0080E0B5 /* GTMBase64.h */,
 				D690B81C19834B7D0080E0B5 /* GTMBase64.m */,
 				D690B81D19834B7D0080E0B5 /* GTMDefines.h */,
@@ -167,8 +171,10 @@
 				D690A5FB1984CBAC000C5041 /* CommonEncryption.m */,
 				4BCFD5B624D422EB006660FA /* NSData+AES256.h */,
 				4BCFD5B524D422EB006660FA /* NSData+AES256.m */,
-				4BCDA4B824E3C8F80059217E /* RSA.h */,
-				4BCDA4B724E3C8F80059217E /* RSA.m */,
+				4BCDA4B824E3C8F80059217E /* BARSA.h */,
+				4BCDA4B724E3C8F80059217E /* BARSA.m */,
+				4BF09C6B25063B6100BA6B18 /* RSAOpenSSL.h */,
+				4BF09C6C25063B6100BA6B18 /* RSAOpenSSL.m */,
 				D690B7FB198344780080E0B5 /* Images.xcassets */,
 				D690B7EA198344780080E0B5 /* Supporting Files */,
 			);
@@ -358,9 +364,10 @@
 				D690B7F4198344780080E0B5 /* AppDelegate.m in Sources */,
 				D690B81E19834B7D0080E0B5 /* GTMBase64.m in Sources */,
 				D690B81A198346AB0080E0B5 /* DES3Util.m in Sources */,
+				4BF09C6D25063B6100BA6B18 /* RSAOpenSSL.m in Sources */,
 				D690B7F0198344780080E0B5 /* main.m in Sources */,
 				4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */,
-				4BCDA4B924E3C8F80059217E /* RSA.m in Sources */,
+				4BCDA4B924E3C8F80059217E /* BARSA.m in Sources */,
 				D690A5FC1984CBAC000C5041 /* CommonEncryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,7 +494,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DESThreeTest/DESThreeTest.entitlements;
 				DEVELOPMENT_TEAM = 63M3QB38XB;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DESThreeTest/DESThreeTest-Prefix.pch";
 				INFOPLIST_FILE = "DESThreeTest/DESThreeTest-Info.plist";
@@ -502,7 +511,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DESThreeTest/DESThreeTest.entitlements;
 				DEVELOPMENT_TEAM = 63M3QB38XB;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DESThreeTest/DESThreeTest-Prefix.pch";
 				INFOPLIST_FILE = "DESThreeTest/DESThreeTest-Info.plist";

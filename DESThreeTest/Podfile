@@ -6,7 +6,8 @@ target 'DESThreeTest' do
   use_frameworks!
 
   # Pods for DESThreeTest
-  pod 'OpenSSL-for-iOS', '~> 1.0.2.d.1'
+#  pod 'OpenSSL'
+  pod 'openssl-ios-bitcode'
   
   target 'DESThreeTestTests' do
     inherit! :search_paths
