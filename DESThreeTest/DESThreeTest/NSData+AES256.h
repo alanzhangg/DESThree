@@ -19,4 +19,8 @@
 @interface NSData (AES256)
 + (NSString *)AES256EncryptWithPlainText:(NSString *)plain withKey:(NSString *)key;        /*加密方法,参数需要加密的内容*/
 + (NSString *)AES256DecryptWithCiphertext:(NSString *)ciphertexts withkey:(NSString *)key; /*解密方法，参数数密文*/
+//二进制文件加解密
++ (NSData *)AES256EncryptWithPlainData:(NSData *)data withKey:(NSString *)key;
++ (NSData *)AES256DecryptWithCipherData:(NSData *)data withKey:(NSString *)key;
+
 @end

@@ -14,6 +14,7 @@
 //
 
 #import "NSData+AES256.h"
+#import "GTMBase64.h"
 #define PASSWORD @"Per vallum duces Labant"
 
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -77,6 +78,42 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 	return nil;
 }
 
++ (NSData *)AES256EncryptWithPlainData:(NSData *)data withKey:(NSString *)key{
+    // 'key' should be 32 bytes for AES256, will be null-padded otherwise
+//    NSString * key = @"7856412346543216";
+    char keyPtr[kCCKeySizeAES128+1]; // room for terminator (unused)
+    bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
+    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+    NSUInteger dataLength = [data length];
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    bzero(buffer, sizeof(buffer));
+    
+    size_t numBytesEncrypted = 0;
+    const void * vinitVec = (const void *)[@"gfdertfghjkuyrtg" UTF8String];
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES128,kCCOptionPKCS7Padding,
+                                          keyPtr, kCCKeySizeAES128,
+                                          vinitVec /* initialization vector (optional) */,
+                                          [data bytes], dataLength, /* input */
+                                          buffer, bufferSize, /* output */
+                                          &numBytesEncrypted);
+    if (cryptStatus == kCCSuccess) {
+        NSData *encryptData = [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
+        return encryptData;
+    }
+    
+    free(buffer); //free the buffer;
+    return nil;
+}
+
+//文件解密
++ (NSData *)AES256DecryptWithCipherData:(NSData *)data withKey:(NSString *)key{
+    NSString * str = [data base64EncodedStringWithOptions:0];
+    NSString * amrdestr = [NSData AES256DecryptWithCiphertext:str withkey:key];
+    NSData * amrdedata = [GTMBase64 decodeString:amrdestr];
+    return amrdedata;
+}
+
 /*解密方法*/
 + (NSString *)AES256DecryptWithCiphertext:(NSString *)ciphertexts withkey:(NSString *)key{
     
@@ -102,7 +139,7 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 	
 	if (cryptStatus == kCCSuccess) {
         NSData *encryptData = [NSData dataWithBytesNoCopy:buffer length:numBytesDecrypted];
-		return [[[NSString alloc] initWithData:encryptData encoding:NSUTF8StringEncoding] init];
+		return [encryptData base64EncodedStringWithOptions:0];
 	}
 	
 	free(buffer); //free the buffer;

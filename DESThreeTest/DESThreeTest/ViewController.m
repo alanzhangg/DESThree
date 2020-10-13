@@ -56,59 +56,68 @@
     }
     NSLog(@"%@", [CommonEncryption aes128Encrypt:data with:@"3c3109ef1afb56cf522501d4ee3c95fa"]);
     
-    NSString* message = @"qwertyuisfdlsajdxcvnkhsakfh1332487";
+//    NSString* message = @"qwertyuisfdlsajdxcvnkhsakfh1332487";
+//
+//    str = [NSData AES256EncryptWithPlainText:message withKey:@"asdfwetyhjuytrfd"];
+//    NSString* res = [NSData AES256DecryptWithCiphertext:str withkey:@"asdfwetyhjuytrfd"];
+//    NSLog(@"%@", str);
+//    NSLog(@"%@",res);
     
-    str = [NSData AES256EncryptWithPlainText:message withKey:@"asdfwetyhjuytrfd"];
-    NSString* res = [NSData AES256DecryptWithCiphertext:str withkey:@"asdfwetyhjuytrfd"];
-    NSLog(@"%@", str);
-    NSLog(@"%@",res);
+    NSFileManager * magager = [NSFileManager defaultManager];
+    NSString * filepath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    //加密
+    NSData * amrdeData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1602301917588_decrypt" ofType:@"amr"]];
+    NSData * amrendata = [NSData AES256EncryptWithPlainData:amrdeData withKey:@"asdfwetyhjuytrfd"];
+    NSLog(@"%d", [magager createFileAtPath:[NSString stringWithFormat:@"%@/enss.amr", filepath] contents:amrendata attributes:nil]);
     
-    //rsa
-    __block NSString * publickey = @"";
-    __block NSString * privatekey = @"";
+    //解密
+    NSData * amrdedata = [NSData AES256DecryptWithCipherData:amrendata withKey:@"asdfwetyhjuytrfd"];
+    NSLog(@"%d", [magager createFileAtPath:[NSString stringWithFormat:@"%@/dess.amr", filepath] contents:amrdedata attributes:nil]);
+        
     
-    message = @"汉皇重色思倾国，御宇多年求不得。杨家有女初长成，养在深闺人未识。天生丽质难自弃，一朝选在君王侧。回眸一笑百媚生，六宫粉黛无颜色。春寒赐浴华清池，温泉水滑洗凝脂。侍儿扶起娇无力，始是新承恩泽时。云鬓花颜金步摇，芙蓉帐暖度春宵。春宵苦短日高起，从此君王不早朝。承欢侍宴无闲暇，春从春游夜专夜。后宫佳丽三千人，三千宠爱在一身。金屋妆成娇侍夜，玉楼宴罢醉和春。姊妹弟兄皆列土，可怜光彩生门户。遂令天下父母心，不重生男重生女。骊宫高处入青云，仙乐风飘处处闻。缓歌慢舞凝丝竹，尽日君王看不足。渔阳鼙鼓动地来，惊破《霓裳羽衣曲》。九重城阙烟尘生，千乘万骑西南行。翠华摇摇行复止，西出都门百余里。六军不发无奈何，\n宛转娥眉马前死。\
-    花钿委地无人收，翠翘金雀玉搔头。\
-    君王掩面救不得，回看血泪相和流。\
-    黄埃散漫风萧索，云栈萦纡登剑阁。\
-    峨嵋山下少人行，旌旗无光日色薄。\
-    蜀江水碧蜀山青，圣主朝朝暮暮情。\
-    行宫见月伤心色，夜雨闻铃肠断声。\
-    天旋日转回龙驭，到此踌躇不能去。(日转 一作：地转)\
-    马嵬坡下泥土中，不见玉颜空死处。\
-    君臣相顾尽沾衣，东望都门信马归。\
-    归来池苑皆依旧，太液芙蓉未央柳。\
-    芙蓉如面柳如眉，对此如何不泪垂？\
-    春风桃李花开夜，秋雨梧桐叶落时。(花开夜 一作：花开日)\
-    西宫南内多秋草，落叶满阶红不扫。(南内 一作：南苑)\
-    梨园弟子白发新，椒房阿监青娥老。\
-    夕殿萤飞思悄然，孤灯挑尽未成眠。\
-    迟迟钟鼓初长夜，耿耿星河欲曙天。\
-    鸳鸯瓦冷霜华重，翡翠衾寒谁与共？\
-    悠悠生死别经年，魂魄不曾来入梦。\
-    临邛道士鸿都客，能以精诚致魂魄。\
-    为感君王辗转思，遂教方士殷勤觅。\
-    排空驭气奔如电，升天入地求之遍。\
-    上穷碧落下黄泉，两处茫茫皆不见。\
-    忽闻海上有仙山，山在虚无缥缈间。\
-    楼阁玲珑五云起，其中绰约多仙子。\
-    中有一人字太真，雪肤花貌参差是。\
-    金阙西厢叩玉扃，转教小玉报双成。\
-    闻道汉家天子使，九华帐里梦魂惊。\
-    揽衣推枕起徘徊，珠箔银屏迤逦开。\
-    云鬓半偏新睡觉，花冠不整下堂来。";
-    
-//    message = @"hello world hello world hello world hello world hello world hello world hello world hello world \
-    hello world hello world hello world hello world hello world hello world hello world hello world hello world \
-    hello world hello world hello world hello world hello world hello world hello world hello world hello world";
-    
-    NSString * enStr = [BARSA encryptString:message publicKey:@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQdsswWUX3jJKByj+KgKVgsVLVKBhsv4wJEmpPtj5QcotRfBkU/aKugzD6peIXRe1ZmN3+tUVNcU+C0oI0iC3/q3aG+51QiE6c3xVMf4sOfaFF8PCM+k4AZ72B3Rrjqgg8q4F4qsn2/ZxWNVc9SAK0PRtJ16U/e/e1oTDHQpgNWQIDAQAB"];
-    NSLog(@"====》%@", enStr);
-    enStr = @"evyJSvKWx1bb7Ycg1My9FBR9O8v3eJSGwtiRB2hDFXkNux5DIt7eENbf3ogV8g7vk06ZGbwJQWZsp10MnNAIXpJf3IT7jA1Xr96aBT5241t6hd4KWE6aZGkRg28NlmJk1J/oVa9QPLBaZYTcqXnE+spHOeROB8vWNDD93QwbguLPuFDYNmVasZPwKUT1llVanE6Bv7GPDe1gIj/RCmtQpjOZJfR1F1SySTYZSqs5yWQ04IqBE52Z1ACvNqkYWOCSnPFSEc1bl+zXrcvsTzeHVzInZnmnLzI39Peln1+RMJRknQOqtYWcIVoepMsW05HrT11ANRu2DBJ6YRRYBv6QrnVqts/TjUwQvWxcVFV23KrPG+/Gv+6AOrbFbfv5FeBreKmZj4A3WdgNjOdJ7Cgm+KnJLPQTYvvIm2dPumLhEd7pFF/4LnEZDwjAChp4kr6fq/aPyfcLSA6mfVo8ol2v47MmbAgB92Aa6pFjalL+UWVzpqRv1II+5RXMm3XmNp4m";
-    NSString * deStr = [BARSA decryptString:enStr privateKey:@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANB2yzBZRfeMkoHKP4qApWCxUtUoGGy/jAkSak+2PlByi1F8GRT9oq6DMPql4hdF7VmY3f61RU1xT4LSgjSILf+rdob7nVCITpzfFUx/iw59oUXw8Iz6TgBnvYHdGuOqCDyrgXiqyfb9nFY1Vz1IArQ9G0nXpT9797WhMMdCmA1ZAgMBAAECgYEAgQTU0rKd5A0ja6Kx2tWuBP8aZgRvwXZ3g/HazETdokqSQTdOCrjDo8BcYvShzoef03ESDB9CqiBz9mK05TBXTqRCIZ+V2k74ihMZbF3G73sU/IvI6QzWNhl5LpZeXmFX1BFk2ynlXl6eICegnq8FKFKkvNRAFW/ESC6du+bXX/UCQQDu4/caC0+yTnzXv+uYlGny531t7AToH8VxiBxqeeN0JBRO/clap/6BaMehERyYukU3Vr/NrcTBGzZJpi2GiNMPAkEA32T2WyuupINcBYTbWzZ03Wc2ZWhcfEs7Yvj54LHy4EzHzpNyh1k2ny0vDNf1dAz6NF8Pa2dnI9kostZnisV5FwJARY9VpVzD0Qyvp3b32A7nJtanHDnMV/bgXCWg+JQTWf8jdrjJR7+BCReEgW7lH8elXe7BnNdLYltVHG7p9LGkmwJAe73jMJE7xej1eiEjmJzLkzBu0zFBuZ+6n5ImZ65qSJB/RRArqoliVj2jCEw/rC7cEVJuqiG24gaSIq3c4OONtQJAJUZz/vQrJeuoXOTi8PrRayyoRPqEeeYMzlod9+eC3I2Augro+3GxfvLNIN8Cz0MxMPaBZmLvyczTl2PBrWLVHQ=="];
-    NSLog(@"%@", deStr);
-    
-    NSLog(@"============秘钥对=============");
+//    //rsa
+//    __block NSString * publickey = @"";
+//    __block NSString * privatekey = @"";
+//
+//    message = @"汉皇重色思倾国，御宇多年求不得。杨家有女初长成，养在深闺人未识。天生丽质难自弃，一朝选在君王侧。回眸一笑百媚生，六宫粉黛无颜色。春寒赐浴华清池，温泉水滑洗凝脂。侍儿扶起娇无力，始是新承恩泽时。云鬓花颜金步摇，芙蓉帐暖度春宵。春宵苦短日高起，从此君王不早朝。承欢侍宴无闲暇，春从春游夜专夜。后宫佳丽三千人，三千宠爱在一身。金屋妆成娇侍夜，玉楼宴罢醉和春。姊妹弟兄皆列土，可怜光彩生门户。遂令天下父母心，不重生男重生女。骊宫高处入青云，仙乐风飘处处闻。缓歌慢舞凝丝竹，尽日君王看不足。渔阳鼙鼓动地来，惊破《霓裳羽衣曲》。九重城阙烟尘生，千乘万骑西南行。翠华摇摇行复止，西出都门百余里。六军不发无奈何，\n宛转娥眉马前死。\
+//    花钿委地无人收，翠翘金雀玉搔头。\
+//    君王掩面救不得，回看血泪相和流。\
+//    黄埃散漫风萧索，云栈萦纡登剑阁。\
+//    峨嵋山下少人行，旌旗无光日色薄。\
+//    蜀江水碧蜀山青，圣主朝朝暮暮情。\
+//    行宫见月伤心色，夜雨闻铃肠断声。\
+//    天旋日转回龙驭，到此踌躇不能去。(日转 一作：地转)\
+//    马嵬坡下泥土中，不见玉颜空死处。\
+//    君臣相顾尽沾衣，东望都门信马归。\
+//    归来池苑皆依旧，太液芙蓉未央柳。\
+//    芙蓉如面柳如眉，对此如何不泪垂？\
+//    春风桃李花开夜，秋雨梧桐叶落时。(花开夜 一作：花开日)\
+//    西宫南内多秋草，落叶满阶红不扫。(南内 一作：南苑)\
+//    梨园弟子白发新，椒房阿监青娥老。\
+//    夕殿萤飞思悄然，孤灯挑尽未成眠。\
+//    迟迟钟鼓初长夜，耿耿星河欲曙天。\
+//    鸳鸯瓦冷霜华重，翡翠衾寒谁与共？\
+//    悠悠生死别经年，魂魄不曾来入梦。\
+//    临邛道士鸿都客，能以精诚致魂魄。\
+//    为感君王辗转思，遂教方士殷勤觅。\
+//    排空驭气奔如电，升天入地求之遍。\
+//    上穷碧落下黄泉，两处茫茫皆不见。\
+//    忽闻海上有仙山，山在虚无缥缈间。\
+//    楼阁玲珑五云起，其中绰约多仙子。\
+//    中有一人字太真，雪肤花貌参差是。\
+//    金阙西厢叩玉扃，转教小玉报双成。\
+//    闻道汉家天子使，九华帐里梦魂惊。\
+//    揽衣推枕起徘徊，珠箔银屏迤逦开。\
+//    云鬓半偏新睡觉，花冠不整下堂来。";
+//
+//    message = @"hello world";
+//
+//    NSString * enStr = [BARSA encryptString:message publicKey:@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCI7kyD1/drBbI7XJWuFmzrvgyuSM/pafcl3yVe3/QIMZqUDV1AVlRYkg/e8F+QYUzzCy7VAtdP2b+5xhZJkQkMv3HtkLiqXLjEF9RAR7ablqC6PShmOfxJpiHOopprMm/umgkzCFbXg0yeSjRxBDZBxtdzcA0oPPPE1pOOTb+PmQIDAQAB"];
+//    NSLog(@"====》%@", enStr);
+//    NSString * deStr = [BARSA decryptString:enStr privateKey:@"MIICXAIBAAKBgQCI7kyD1/drBbI7XJWuFmzrvgyuSM/pafcl3yVe3/QIMZqUDV1AVlRYkg/e8F+QYUzzCy7VAtdP2b+5xhZJkQkMv3HtkLiqXLjEF9RAR7ablqC6PShmOfxJpiHOopprMm/umgkzCFbXg0yeSjRxBDZBxtdzcA0oPPPE1pOOTb+PmQIDAQABAoGARa9AMTiPKV/UvHD5m4a+F5q4SVm0tUzAAf31vrqqLiFQUVgbxMoqUojCmuopOAjMaEOgqbawbGqcL6anYPj2aU4LibMnvhX742xruuynkRJ00lLwOpo4iy/iGa77FD4ZTc98Vyryuhf+rOrW8TkoRC2+U0U9EUA1+tJX2sK0yAECQQDWpVbREEa8SFSh34QuiZ6PMJLTYSlzkfF5b3NsJ9EhzTZQ2ALfOp8eau1Nx38z8QMIelK/ey1Aqp8wo5i0kuO5AkEAo0/v+yYTsa3UiDMwdYK6Y3Cbx1dAn/OLYjOqHFBQD+rnIeBED7w0Yb533gAKjytKfMNr8hZh7BSfOpRtAzm64QJBAL+a3ELHqr0MPDA7nH0GcDoV/BshEqWN0+a47GnRqUfpLeFA0l9+rueyP588xHoTXMfGmfM/+4dMR8pdX0ViElECQHjvUiPmL4FM22y8k28BjqrikckNGMMZ46al4Zuz8YXICr6wR1ZrpVKYbEVOPIOGqFM5l68e2garwrnrfcp8rqECQGlHKYasYmuQMVEjtUOfEwMGnRT4GPF+Tf2Zyi+zTe4tcRO2ZElsGvS6Piz0ZdaK85yhDe/5IhKbBaCJd2gZBUk="];
+//    NSLog(@"解密----%@", deStr);
+//
+//    NSLog(@"============秘钥对=============");
 
 //    RSA * openSSLPublicKey;
 //    RSA * openSSLPrivateKey;

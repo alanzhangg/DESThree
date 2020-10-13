@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1CFE78C22A2BFE3D233BD8DE /* Pods_DESThreeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C810CF9914D3E9517B71E480 /* Pods_DESThreeTestTests.framework */; };
+		4BACFC2325344B4C00033364 /* 1602301917588_decrypt.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4BACFC2225344B4C00033364 /* 1602301917588_decrypt.amr */; };
+		4BACFC2725344B7000033364 /* 1602301917588_encrypt.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4BACFC2625344B7000033364 /* 1602301917588_encrypt.amr */; };
 		4BCDA4B924E3C8F80059217E /* BARSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDA4B724E3C8F80059217E /* BARSA.m */; };
 		4BCFD5B724D422EB006660FA /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCFD5B524D422EB006660FA /* NSData+AES256.m */; };
 		4BF09C6D25063B6100BA6B18 /* RSAOpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF09C6C25063B6100BA6B18 /* RSAOpenSSL.m */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		2907F37358C5D39D84696103 /* Pods-DESThreeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DESThreeTestTests.release.xcconfig"; path = "Target Support Files/Pods-DESThreeTestTests/Pods-DESThreeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		40C85344C36751708B560D90 /* Pods_DESThreeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DESThreeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BACFC2225344B4C00033364 /* 1602301917588_decrypt.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1602301917588_decrypt.amr; sourceTree = "<group>"; };
+		4BACFC2625344B7000033364 /* 1602301917588_encrypt.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1602301917588_encrypt.amr; sourceTree = "<group>"; };
 		4BCDA4B724E3C8F80059217E /* BARSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BARSA.m; sourceTree = "<group>"; };
 		4BCDA4B824E3C8F80059217E /* BARSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BARSA.h; sourceTree = "<group>"; };
 		4BCFD5B524D422EB006660FA /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				4BF09C6B25063B6100BA6B18 /* RSAOpenSSL.h */,
 				4BF09C6C25063B6100BA6B18 /* RSAOpenSSL.m */,
 				D690B7FB198344780080E0B5 /* Images.xcassets */,
+				4BACFC2225344B4C00033364 /* 1602301917588_decrypt.amr */,
+				4BACFC2625344B7000033364 /* 1602301917588_encrypt.amr */,
 				D690B7EA198344780080E0B5 /* Supporting Files */,
 			);
 			path = DESThreeTest;
@@ -292,7 +298,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BACFC2325344B4C00033364 /* 1602301917588_decrypt.amr in Resources */,
 				D690B7FC198344780080E0B5 /* Images.xcassets in Resources */,
+				4BACFC2725344B7000033364 /* 1602301917588_encrypt.amr in Resources */,
 				D690B7EE198344780080E0B5 /* InfoPlist.strings in Resources */,
 				D690B7F7198344780080E0B5 /* Main.storyboard in Resources */,
 			);
